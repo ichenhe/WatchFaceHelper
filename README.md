@@ -105,17 +105,6 @@ public class DemoWatchFace extends BaseWatchFaceService {
                 s += ":" + getCalendar().get(Calendar.SECOND);
             canvas.drawText(s, bounds.width() / 2f, bounds.height() / 2f, mPaint);
         }
-
-        @Override
-        public void onTimeZoneChanged() {
-            super.onTimeZoneChanged();
-        }
-
-        @Override
-        public void onBatteryChanged(int level, int scale, int status) {
-            super.onBatteryChanged(level, scale, status);
-            Log.i("Battery", "Level: " + level + " Scale: " + scale + " status: " + status);
-        }
     }
 }
 ```
