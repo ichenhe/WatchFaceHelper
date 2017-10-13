@@ -7,9 +7,23 @@
 - 可选电量监听。
 
 # 基本用法
+
+## 整体步骤
 1. 创建你的WatchFaceService并继承自`BaseWatchFaceService`.
 2. 创建你的Engine并继承自`BaseWatchFaceService.BaseEngine`.
 3. 专注于表盘的设计与绘制。
+
+## 常用函数
+在`Engine`实例里，你可以直接使用下面的函数。
+
+| 函数名                        | 功能                                |
+| -------------------------- | --------------------------------- |
+| setInteractiveUpdateRateMS | 设置激活状态的刷新间隔(毫秒)                   |
+| getCalendar                | 获得Calendar实例(已设置为当前时间)            |
+| is12h                      | 是否为十二小时制                          |
+| isTicwear                  | 当前是否为Ticwear系统，AndroidWear则为FALSE |
+| isSupportLowBitAmbient     | 是否支持微光常亮                          |
+| isBurnInProtection         | 是否需要烧屏保护                          |
 
 # 扩展用法
 **注意**：所有内置的监听均会在表盘不可见时销毁并在可见时重新注册。因此当表盘不可见时，监听无法被正常调用，即使有关属性发生了改变。
