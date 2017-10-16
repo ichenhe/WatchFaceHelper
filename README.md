@@ -9,6 +9,9 @@
 # 基本用法
 
 ## 整体步骤
+配置依赖
+```compile 'cc.chenhe:watch-face-helper:2.0.0'```
+
 1. 创建你的WatchFaceService并继承自`BaseWatchFaceService`.
 2. 创建你的Engine并继承自`BaseWatchFaceService.BaseEngine`.
 3. 专注于表盘的设计与绘制。
