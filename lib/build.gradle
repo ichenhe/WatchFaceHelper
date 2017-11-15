@@ -1,14 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 26
         versionCode 2
-        versionName "2.0"
+        versionName "2.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -19,14 +20,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 //    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.google.android.support:wearable:2.0.5'
+    implementation 'com.google.android.support:wearable:2.0.5'
     testCompile 'junit:junit:4.12'
+}
+
+publish {
+    userOrg = 'liangchenhe55'//bintray.com用户名
+    groupId = 'cc.chenhe'//jcenter上的路径
+    artifactId = 'watch-face-helper'//项目名称
+    publishVersion = '2.0.0'//版本号
+    desc = 'Simplified watch face development for Android Wear.'//描述，不重要
+    website = 'https://github.com/liangchenhe55/WatchFaceHelper'
 }
