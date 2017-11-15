@@ -95,6 +95,7 @@ public abstract class BaseWatchFaceService extends CanvasWatchFaceService {
         final private BroadcastReceiver mCommonReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                if (intent.getAction() == null) return;
                 switch (intent.getAction()) {
                     case Intent.ACTION_BATTERY_CHANGED:
                         onBatteryChanged(intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0),
@@ -289,6 +290,57 @@ public abstract class BaseWatchFaceService extends CanvasWatchFaceService {
 
         public Calendar getCalendar() {
             return mCalendar;
+        }
+
+        /**
+         * 获取小时文本。自动处理12/24时制换算。
+         *
+         * @param doubleDigits 是否强制两位数
+         * @return 小时的文本
+         */
+        public String getHourText(boolean doubleDigits) {
+            int h = getCalendar().get(is12h() ? Calendar.HOUR : Calendar.HOUR_OF_DAY);
+            if (h == 0 && is12h()) h = 12;
+            return (doubleDigits && h < 10 ? "0" : "") + h;
+        }
+
+        /**
+         * 获取分钟的文本。
+         *
+         * @param doubleDigits 是否强制两位数
+         * @return 分钟文本
+         */
+        public String getMinText(boolean doubleDigits) {
+            int m = getCalendar().get(Calendar.MINUTE);
+            return (doubleDigits && m < 10 ? "0" : "") + m;
+        }
+
+
+        /**
+         * 获取当前时针的角度。以12点为0度以顺时针为正方向。
+         *
+         * @return 当前时针的角度
+         */
+        public float getHourDegree() {
+            return 360 / 720f * (mCalendar.get(Calendar.HOUR) * 60 + mCalendar.get(Calendar.MINUTE));
+        }
+
+        /**
+         * 获取当前分针的角度。以12点为0度以顺时针为正方向。
+         *
+         * @return 当前分针的角度
+         */
+        public float getMinDegree() {
+            return (mCalendar.get(Calendar.MINUTE) * 60 + mCalendar.get(Calendar.SECOND)) * 360 / 3600f;
+        }
+
+        /**
+         * 获取当前秒针的角度。以12点为0度以顺时针为正方向。
+         *
+         * @return 当前秒针的角度
+         */
+        public float getSecDegree() {
+            return (mCalendar.get(Calendar.SECOND) * 1000 + mCalendar.get(Calendar.MILLISECOND)) * 360 / 60000f;
         }
     }
 }
