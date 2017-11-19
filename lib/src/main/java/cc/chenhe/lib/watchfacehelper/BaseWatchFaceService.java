@@ -118,7 +118,7 @@ public abstract class BaseWatchFaceService extends CanvasWatchFaceService {
             super.onCreate(holder);
             mCalendar = Calendar.getInstance();
 
-            mTicwear = !getProperty("mTicwear.version.name", "unknown").equals("unknown");
+            mTicwear = !getProperty("ticwear.version.name", "unknown").equals("unknown");
         }
 
         /**
@@ -315,6 +315,16 @@ public abstract class BaseWatchFaceService extends CanvasWatchFaceService {
             return (doubleDigits && m < 10 ? "0" : "") + m;
         }
 
+        /**
+         * 获取日期的文本。
+         *
+         * @param doubleDigits 是否强制两位数
+         * @return 日期文本
+         */
+        public String getDayText(boolean doubleDigits) {
+            int d = getCalendar().get(Calendar.DAY_OF_MONTH);
+            return (doubleDigits && d < 10 ? "0" : "") + d;
+        }
 
         /**
          * 获取当前时针的角度。以12点为0度以顺时针为正方向。
