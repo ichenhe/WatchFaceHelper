@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 4
-        versionName "2.0.2"
+        versionCode 5
+        versionName "2.0.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -39,7 +39,7 @@ publish {
     userOrg = 'liangchenhe55'//bintray.com用户名
     groupId = 'cc.chenhe'//jcenter上的路径
     artifactId = 'watch-face-helper'//项目名称
-    publishVersion = '2.0.2'//版本号
+    publishVersion = '2.0.3'//版本号
     desc = 'Simplified watch face development for Android Wear.'//描述，不重要
     website = 'https://github.com/liangchenhe55/WatchFaceHelper'
 }

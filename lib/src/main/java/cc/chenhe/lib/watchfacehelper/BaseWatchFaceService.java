@@ -179,9 +179,7 @@ public abstract class BaseWatchFaceService extends CanvasWatchFaceService {
          * 更新时钟状态
          */
         private void updateTimer() {
-            String time = android.provider.Settings.System.getString(getContentResolver(),
-                    android.provider.Settings.System.TIME_12_24);
-            m12h = time != null && time.equals("12");
+            m12h = !android.text.format.DateFormat.is24HourFormat(getApplicationContext());
 
             mUpdateTimeHandler.removeMessages(MSG_UPDATE_TIME);
             if (shouldTimerBeRunning())
